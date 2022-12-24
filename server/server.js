@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
     res.status(200).send({
-        message: 'The Fullstack Overlord has given you his ear'
+        message: 'The Fullstack Overlord has given you its ear'
     })
 })
 
@@ -28,7 +28,7 @@ app.post('/', async(req, res) => {
         const prompt = req.body.prompt;
 
         const response = await openai.createCompletion({
-            model: "text-davinci-003",
+            model: "code-davinci-002",
             prompt: `${prompt}`,
             temperature: 0,
             max_tokens: 2500,
