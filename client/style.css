@@ -145,7 +145,7 @@ button {
 }
 
 button img {
-  background-color: #343541
+  filter: invert(18%) sepia(24%) saturate(359%) hue-rotate(197deg) brightness(97%) contrast(92%);
 }
 
 #form_prompt img {
