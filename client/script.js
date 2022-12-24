@@ -1,4 +1,4 @@
-import bot from './assets/bot.svg';
+import overlord from './assets/bot.svg';
 import user from './assets/user.svg';
 
 const formPrompt = document.querySelector('#form_prompt');
@@ -35,15 +35,15 @@ function generateMessageId(){
   return randomId;
 }
 
-function alternateChatRows(isUser, value, messageId) {
+function alternateChatRows(isOverlord, value, messageId) {
   return (
     `
       <div class="wrapper ${isOverlord && 'chat_overlord'}">
         <div class="chat">
           <div className="profile">
             <img
-              src="${isOverlord ? bot : user}"
-              alt="${isOverlord ? 'bot' : 'user'}"
+              src="${isOverlord ? overlord : user}"
+              alt="${isOverlord ? 'overlord' : 'user'}"
             />
           </div>
           <div class="message" id=${messageId}>${value}</div>
@@ -56,19 +56,16 @@ function alternateChatRows(isUser, value, messageId) {
 const handleSubmit = async(e) => {
   e.preventDefault();
 
-  const data = FormData(formPrompt);
+  const data = new FormData(formPrompt);
   
   chatContainer.innerHTML += alternateChatRows(false, data.get('prompt'));
-
   formPrompt.reset();
 
   const messageId = generateMessageId();
   chatContainer.innerHTML += alternateChatRows(true, ' ', messageId);
   
   chatContainer.scrollTop = chatContainer.scrollHeight;
-
   const latestMessageDiv = document.getElementById(messageId);
-
   loader(latestMessageDiv);
 }
 
