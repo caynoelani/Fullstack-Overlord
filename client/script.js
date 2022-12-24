@@ -1,4 +1,4 @@
-import overlord from './assets/bot.svg';
+import overlord from './assets/zurg.jpg';
 import user from './assets/user.svg';
 
 const formPrompt = document.querySelector('#form_prompt');
@@ -12,7 +12,7 @@ function loader(element){
   loadInterval = setInterval(() => {
     element.textContent += '.';
 
-    if (element.textContent === '....') element.textContent = '';
+    if(element.textContent === '....') element.textContent = '';
   }, 250)
 }
 
@@ -21,7 +21,7 @@ function typeWriter(element, text) {
 
   let interval = setInterval(() => {
     if(index < text.length){
-      element.innerHTML += text.chartAt(index);
+      element.innerHTML += text.charAt(index);
       index++
     } else {
       clearInterval(interval);
@@ -40,7 +40,7 @@ function alternateChatRows(isOverlord, value, messageId) {
     `
       <div class="wrapper ${isOverlord && 'chat_overlord'}">
         <div class="chat">
-          <div className="profile">
+          <div class="profile">
             <img
               src="${isOverlord ? overlord : user}"
               alt="${isOverlord ? 'overlord' : 'user'}"
@@ -83,15 +83,13 @@ const handleSubmit = async(e) => {
 
   if(response.ok){
     const data = await response.json();
-    const parsedData = data.bot.trim();
+    const parsedData = data.overlord.trim();
 
     typeWriter(latestMessageDiv, parsedData);
   } else {
     const err = await response.text();
 
-    latestMessageDiv.innerHTML = "Something went wrong";
-
-    alert(err);
+    latestMessageDiv.innerHTML = "I appear to be experiencing interference. Please repeat your inquiry.";
   }
 }
 
