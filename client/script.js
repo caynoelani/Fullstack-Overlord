@@ -67,6 +67,32 @@ const handleSubmit = async(e) => {
   chatContainer.scrollTop = chatContainer.scrollHeight;
   const latestMessageDiv = document.getElementById(messageId);
   loader(latestMessageDiv);
+
+  const response = await fetch('http://localhost:5000', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      prompt: data.get('prompt')
+    })
+  });
+
+  clearInterval(loadInterval);
+  latestMessageDiv.innerHTML = '';
+
+  if(response.ok){
+    const data = await response.json();
+    const parsedData = data.bot.trim();
+
+    typeWriter(latestMessageDiv, parsedData);
+  } else {
+    const err = await response.text();
+
+    latestMessageDiv.innerHTML = "Something went wrong";
+
+    alert(err);
+  }
 }
 
 formPrompt.addEventListener('submit', handleSubmit);
