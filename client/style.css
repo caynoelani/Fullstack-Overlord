@@ -144,6 +144,10 @@ button {
   background: transparent;
 }
 
+button img {
+  background-color: #343541
+}
+
 #form_prompt img {
   width: 30px;
   height: 30px;
