@@ -49,7 +49,7 @@ body {
   padding: 15px;
 }
 
-.ai {
+.chat_overlord {
   background: #40414F;
 }
 
@@ -112,7 +112,7 @@ body {
   display: none;
 }
 
-form {
+#form_prompt {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
@@ -144,7 +144,7 @@ button {
   background: transparent;
 }
 
-form img {
+#form_prompt img {
   width: 30px;
   height: 30px;
 }
