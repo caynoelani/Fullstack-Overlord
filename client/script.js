@@ -68,7 +68,7 @@ const handleSubmit = async(e) => {
   const latestMessageDiv = document.getElementById(messageId);
   loader(latestMessageDiv);
 
-  const response = await fetch('http://localhost:5000', {
+  const response = await fetch('https://fullstack-overlord.onrender.com', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
